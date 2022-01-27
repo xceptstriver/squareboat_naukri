@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Home from "../src/containers/Home/home";
+import Login from "./containers/Login/login";
+import Signup from "./containers/Signup/signup";
+import ForgotPassword from "./containers/ForgotPassword/forgotpassword";
+import ResetPassword from "./containers/ResetPassword/resetpassword";
+import Jobs from "./containers/Jobs/jobs";
+import Postjobs from "./containers/PostJobs/postjobs";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />} />
+          <Route path="/resetpassword" element={<ResetPassword />} />
+          <Route path="/jobs" element={<Jobs />} />
+          <Route path="/postjobs" element={<Postjobs />} />
+
+          <Route>404 not found!!</Route>
+        </Routes>
+      </Router>
     </div>
   );
-}
+};
 
 export default App;
