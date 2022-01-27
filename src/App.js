@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from "../src/containers/Home/home";
 import Login from "./containers/Login/login";
 import Signup from "./containers/Signup/signup";
@@ -13,17 +13,17 @@ const App = () => {
   return (
     <div className="App">
       <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/forgotpassword" element={<ForgotPassword />} />
-          <Route path="/resetpassword" element={<ResetPassword />} />
-          <Route path="/jobs" element={<Jobs />} />
-          <Route path="/postjobs" element={<Postjobs />} />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/signup" exact component={Signup} />
+          <Route path="/forgotpassword" exact component={ForgotPassword} />
+          <Route path="/resetpassword" exact component={ResetPassword} />
+          <Route path="/jobs" exact component={Jobs} />
+          <Route path="/postjobs" exact component={Postjobs} />
 
-          <Route>404 not found!!</Route>
-        </Routes>
+          <Route path="*" component={() => <h1>404 not found!</h1>} />
+        </Switch>
       </Router>
     </div>
   );

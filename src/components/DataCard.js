@@ -37,6 +37,7 @@ const DataCard = (props) => {
             setIsModalVisible={props.setIsModalVisible}
             jobId={props.jobId}
             setApplicants={props.setApplicants}
+            history={props.history}
           />
         </div>
       ) : null}

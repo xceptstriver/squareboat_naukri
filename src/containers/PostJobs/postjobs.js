@@ -8,7 +8,7 @@ import { emailRegex } from "../../constants/generic";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header";
 
-const Postjobs = () => {
+const Postjobs = (props) => {
   const auth = useSelector((state) => state.auth || {}).auth;
 
   const [init, setInit] = useState(false);
@@ -78,7 +78,7 @@ const Postjobs = () => {
   return (
     <div className="App">
       <div style={{ backgroundColor: "#303F60" }}>
-        <Header showButton={false} />
+        <Header showButton={false} history={props.history} />
         <div
           style={{
             display: "flex",
@@ -101,7 +101,7 @@ const Postjobs = () => {
           boxShadow: "0px 30px 36px #557da526",
         }}
       >
-        <h2 style={{ color: "#303F60", textAlign: "left" }}>Login</h2>
+        <h2 style={{ color: "#303F60", textAlign: "left" }}>Post a job</h2>
         <div style={{ flexDirection: "column" }}>
           {jobInput.map((_, k) => renderInputText(_))}
           {successMsg && successMsg.length ? (
@@ -121,6 +121,7 @@ const Postjobs = () => {
               location={location}
               setSuccessMsg={setSuccessMsg}
               setPostError={setPostError}
+              history={props.history}
             />
           </div>
         </div>

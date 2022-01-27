@@ -6,11 +6,13 @@ import SectionTitle from "../../components/SectionTitle";
 import { brandLogos, homeData } from "../../constants/home";
 import Header from "../../components/Header";
 
-const Home = () => {
+const Home = (props) => {
+  console.log(props);
+
   return (
     <div className="App">
       <div style={{ backgroundColor: "#303F60" }}>
-        <Header showButton />
+        <Header showButton history={props.history} />
         <div
           style={{
             display: "flex",
@@ -25,7 +27,7 @@ const Home = () => {
               Welcome to <br />
               My<span style={{ color: "#43AFFF" }}>Jobs</span>
             </h1>
-            <CustomButton text="Get Started" fromHome />
+            <CustomButton text="Get Started" fromHome history={props.history} />
           </div>
           <div>
             <img

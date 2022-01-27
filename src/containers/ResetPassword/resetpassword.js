@@ -7,10 +7,8 @@ import FormInput from "../../components/FormInput";
 import { emailRegex } from "../../constants/generic";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header";
-import { Input, Space } from "antd";
-import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 
-const ResetPassword = () => {
+const ResetPassword = (props) => {
   const token = useSelector((state) => state.tokenReducer || "");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -66,7 +64,7 @@ const ResetPassword = () => {
   return (
     <div className="App">
       <div style={{ backgroundColor: "#303F60" }}>
-        <Header showButton />
+        <Header showButton history={props.history} />
         <div
           style={{
             display: "flex",
@@ -108,6 +106,7 @@ const ResetPassword = () => {
               confirmPassword={confirmPassword}
               setAuthError={setAuthError}
               setErrorMessage={setErrorMessage}
+              history={props.history}
             />
           </div>
         </div>

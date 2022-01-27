@@ -8,7 +8,7 @@ import { emailRegex } from "../../constants/generic";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header";
 
-const ForgotPassword = () => {
+const ForgotPassword = (props) => {
   const auth = useSelector((state) => state.auth || {}).auth;
 
   const [init, setInit] = useState(false);
@@ -68,7 +68,7 @@ const ForgotPassword = () => {
   return (
     <div className="App">
       <div style={{ backgroundColor: "#303F60" }}>
-        <Header showButton={true} />
+        <Header showButton={true} history={props.history} />
         <div
           style={{
             display: "flex",
@@ -111,6 +111,7 @@ const ForgotPassword = () => {
               fromForgot
               email={email}
               setAuthError={setAuthError}
+              history={props.history}
             />
           </div>
         </div>

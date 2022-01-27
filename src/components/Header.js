@@ -1,18 +1,18 @@
 import React from "react";
 import "antd/dist/antd.css";
 import CustomButton from "./CustomButton";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Header = (props) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const navigateFn = async () => {
     const jsonValue = await localStorage.getItem("@token");
     const tasksObj = jsonValue != null ? jsonValue : "";
     if (tasksObj) {
-      navigate("/jobs");
+      props.history.push("/jobs");
     } else {
-      navigate("/login");
+      props.history.push("/login");
     }
   };
 
@@ -48,19 +48,18 @@ const Header = (props) => {
         style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
       >
         {props.showPost ? (
-          <h5 style={{ color: "#FFFFFF", textAlign: "right" }}>
-            <Link
-              to={`/postjobs`}
-              style={{ textDecoration: "none", color: "#FFFFFF" }}
-            >
-              Post a Job
-            </Link>
+          <h5
+            style={{ color: "#FFFFFF", textAlign: "right" }}
+            onClick={() => props.history.push("/postjobs")}
+          >
+            Post a Job
           </h5>
         ) : null}
         {props.showButton ? (
           <CustomButton
             text={props.fromJobs ? "Logout" : "Login/Signup"}
             fromHeader
+            history={props.history}
           />
         ) : null}
       </div>

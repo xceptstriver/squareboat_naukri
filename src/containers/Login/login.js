@@ -8,7 +8,7 @@ import { emailRegex } from "../../constants/generic";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header";
 
-const Login = () => {
+const Login = (props) => {
   const auth = useSelector((state) => state.auth || {}).auth;
 
   const [init, setInit] = useState(false);
@@ -87,7 +87,7 @@ const Login = () => {
   return (
     <div className="App">
       <div style={{ backgroundColor: "#303F60" }}>
-        <Header showButton={false} />
+        <Header showButton={false} history={props.history} />
         <div
           style={{
             display: "flex",
@@ -125,6 +125,7 @@ const Login = () => {
               email={email}
               password={password}
               setAuthError={setAuthError}
+              history={props.history}
             />
           </div>
           <div style={{ marginTop: "2rem" }}>

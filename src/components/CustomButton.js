@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Button } from "antd";
 import "antd/dist/antd.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../constants/api";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,11 +10,15 @@ import { setToken } from "../redux/actions/token";
 
 const CustomButton = (props) => {
   const token = useSelector((state) => state.tokenReducer || {}).token || "";
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
+  console.log(props);
 
   const onSubmit = async () => {
-    if (props.fromHome) navigate("/login");
+    if (props.fromHome) {
+      props.history.push("/login");
+      // <Link to={"/login"} />;
+    }
 
     if (props.fromLogin) {
       handleLogin(props.email, props.password);
@@ -33,12 +37,12 @@ const CustomButton = (props) => {
     } else if (props.fromPostjob) {
       handlepostJob(props.title, props.description, props.location);
     } else if (props.navigatePostJobs) {
-      navigate("/postjobs");
+      props.history.push("/postjobs");
     } else if (props.fromApplicants) {
       handleApplicants(props.jobId);
     } else if (props.fromHeader) {
       await localStorage.clear();
-      navigate("/login");
+      props.history.push("/login");
     }
   };
 
@@ -50,7 +54,7 @@ const CustomButton = (props) => {
         await localStorage.setItem("@token", data.data.token);
         dispatch(setAuth(data.data));
         dispatch(setToken(data.data.token));
-        navigate("/jobs");
+        props.history.push("/jobs");
       } else {
         props.setAuthError(true);
       }
@@ -83,7 +87,7 @@ const CustomButton = (props) => {
         await localStorage.setItem("@token", data.data.token);
         dispatch(setAuth(data.data));
         dispatch(setToken(data.data.token));
-        navigate("/jobs");
+        props.history.push("/jobs");
       } else {
       }
     } catch (error) {
@@ -99,7 +103,7 @@ const CustomButton = (props) => {
       if (data.success && data.data) {
         await localStorage.setItem("@token", data.data.token);
         dispatch(setToken(data.data.token));
-        navigate("/resetpassword");
+        props.history.push("/resetpassword");
       } else {
         props.setAuthError(true);
       }
@@ -117,7 +121,7 @@ const CustomButton = (props) => {
       if (data.success && data.data) {
         await localStorage.setItem("@token", data.data.token);
         dispatch(setToken(data.data.token));
-        navigate("/jobs");
+        props.history.push("/jobs");
       } else {
         props.setErrorMessage(data.message);
       }

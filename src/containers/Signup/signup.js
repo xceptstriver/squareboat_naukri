@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { FileSearchOutlined, TeamOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 
-const Signup = () => {
+const Signup = (props) => {
   const auth = useSelector((state) => state.auth || {}).auth;
 
   const [init, setInit] = useState(false);
@@ -122,7 +122,7 @@ const Signup = () => {
   return (
     <div className="App">
       <div style={{ backgroundColor: "#303F60" }}>
-        <Header showButton={false} />
+        <Header showButton={false} history={props.history} />
         <div
           style={{
             display: "flex",
@@ -181,6 +181,7 @@ const Signup = () => {
               name={name}
               skills={skills}
               setAuthError={setAuthError}
+              history={props.history}
             />
           </div>
           <div style={{ marginTop: "2rem" }}>

@@ -11,7 +11,7 @@ import { brandLogos, homeData } from "../../constants/home";
 import { InputNumber, Checkbox, Space, Modal } from "antd";
 import ApplicantCard from "../../components/ApplicantCard";
 
-const Jobs = () => {
+const Jobs = (props) => {
   const token = useSelector((state) => state.tokenReducer || {}).token || "";
 
   const postedJobs = useSelector((state) => state.allJobs || {}).jobs || [];
@@ -90,7 +90,7 @@ const Jobs = () => {
   return (
     <div className="App">
       <div style={{ backgroundColor: "#303F60" }}>
-        <Header showPost showButton fromJobs />
+        <Header showPost showButton fromJobs history={props.history} />
         <div
           style={{
             display: "flex",
@@ -156,7 +156,11 @@ const Jobs = () => {
                   }}
                 >
                   Your posted jobs will show here!
-                  <CustomButton text="Post a job" navigatePostJobs />
+                  <CustomButton
+                    text="Post a job"
+                    navigatePostJobs
+                    history={props.history}
+                  />
                 </h4>
               </div>
             )}
