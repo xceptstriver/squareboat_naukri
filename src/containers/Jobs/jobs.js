@@ -153,6 +153,7 @@ const Jobs = (props) => {
                     flexDirection: "row",
                     justifyContent: "center",
                     alignItems: "center",
+                    color: "#fff",
                   }}
                 >
                   Your posted jobs will show here!
@@ -174,14 +175,17 @@ const Jobs = (props) => {
               display: "flex",
             }}
           >
-            <Space>
-              <InputNumber
-                min={1}
-                max={10}
-                defaultValue={1}
-                onChange={(e) => setPageNo(e)}
-              />
-            </Space>
+            {postedJobs && postedJobs.length ? (
+              <Space>
+                <InputNumber
+                  min={1}
+                  max={10}
+                  defaultValue={1}
+                  onChange={(e) => setPageNo(e)}
+                />
+              </Space>
+            ) : null}
+
             <Modal
               title="Applicants for this job"
               visible={isModalVisible}
